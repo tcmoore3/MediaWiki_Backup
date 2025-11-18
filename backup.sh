@@ -171,7 +171,7 @@ function toggle_read_only {
 function export_sql {
     SQLFILE=$BACKUP_PREFIX"-database_$DB_CHARSET.sql.gz"
     echo "Dumping database to $SQLFILE"
-    nice -n 19 mysqldump --single-transaction \
+    nice -n 19 /Applications/MAMP/Library/bin/mysql80/bin/mysqldump --single-transaction \
         --default-character-set=$DB_CHARSET \
         --host=$DB_HOST \
         --user=$DB_USER \
@@ -197,8 +197,8 @@ function export_xml {
     echo "Exporting XML to $XML_DUMP"
     cd "$INSTALL_DIR/maintenance"
     ## Make sure PHP is found.
-    if hash php 2>/dev/null; then
-        php -d error_reporting=E_ERROR dumpBackup.php \
+    if hash /Applications/MAMP/bin/php/php8.3.14/bin/php 2>/dev/null; then
+        /Applications/MAMP/bin/php/php8.3.14/bin/php -d error_reporting=E_ERROR dumpBackup.php \
             --conf="$INSTALL_DIR/LocalSettings.php" \
             --quiet --full --logs --uploads \
             | gzip -9 > "$XML_DUMP"
