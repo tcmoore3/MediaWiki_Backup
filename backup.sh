@@ -69,7 +69,7 @@ function get_options {
         usage; exit 1;
     fi
     if [ ! -d "$BACKUP_DIR" ]; then
-        mkdir --parents $BACKUP_DIR;
+        mkdir -p $BACKUP_DIR;
         if [ ! -d "$BACKUP_DIR" ]; then
             echo -n "Backup directory $BACKUP_DIR does not exist" 1>&2
             echo " and could not be created" 1>&2
@@ -254,7 +254,7 @@ function combine_archives {
 if [[ "$BASH_SOURCE" == "$0" ]];then
 
 # Preparation
-get_options $@
+get_options "$@"
 get_localsettings_vars
 toggle_read_only ON
 
